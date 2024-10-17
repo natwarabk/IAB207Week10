@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block content %}
+
+<div class="container">
+    <div class="page-header">
+        <h4>{{ heading }}</h4>
+    </div>
+
+    <!-- Render the form using Bootstrap 5 -->
+    <div class="col-md-6 ml-5">
+        {{ render_form(form) }}
+    </div>
+
+    <!-- Loop to display flashed messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="col-md-6 ml-5 mt-3">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+</div>
+
+{% endblock %}
